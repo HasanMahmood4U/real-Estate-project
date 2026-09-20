@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Estate-Ease | Find Your Dream Property</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f7f8fa;
+            color: #222;
+        }0
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0d6b4b;
+        }
+
+        .logo span {
+            color: #f4a62a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #0d6b4b;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .post-btn {
+            padding: 11px 18px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .login-btn {
+            color: #0d6b4b;
+            border: 1px solid #0d6b4b;
+        }
+
+        .post-btn {
+            background: #f4a62a;
+            color: white;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 550px;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.48),
+                    rgba(0, 0, 0, 0.48)
+                ),
+                url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 1000px;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 span {
+            color: #f4a62a;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            color: #eee;
+        }
+
+        /* ================= SEARCH BOX ================= */
+
+        .search-box {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+            color: #222;
+        }
+
+        .property-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .property-tab {
+            border: none;
+            background: transparent;
+            padding: 13px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .property-tab.active {
+            color: #0d6b4b;
+            border-bottom: 3px solid #0d6b4b;
+        }
+
+        .search-fields {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr auto;
+            gap: 10px;
+        }
+
+        .field {
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            padding: 10px 12px;
+            text-align: left;
+            background: #fff;
+        }
+
+        .field label {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .field select,
+        .field input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            background: transparent;
+        }
+
+        .search-btn {
+            border: none;
+            background: #0d6b4b;
+            color: white;
+            padding: 0 25px;
+            border-radius: 7px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #09543b;
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .categories {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .category-icon {
+            width: 65px;
+            height: 65px;
+            margin: auto;
+            background: #e8f5ef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .category-card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .category-card p {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* ================= FEATURED ================= */
+
+        .featured {
+            background: #eef5f2;
+            padding: 60px 20px;
+        }
+
+        .featured-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .property-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .property-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #0d6b4b;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .property-info {
+            padding: 20px;
+        }
+
+        .property-info h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .property-details {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .property-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+        }
+
+        .price {
+            color: #0d6b4b;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .view-btn {
+            text-decoration: none;
+            color: #f4a62a;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            max-width: 1200px;
+            margin: 70px auto;
+            padding: 50px;
+            background: #18924b;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            margin-bottom: 25px;
+            color: #dceee7;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #f4a62a;
+            color: white;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #18231f;
+            color: white;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: #f4a62a;
+        }
+
+        .footer-column p {
+            color: #aaa;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #33413b;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .search-fields {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-btn {
+                padding: 14px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .property-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: 65px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .nav-buttons .post-btn {
+                display: none;
+            }
+
+            .hero {
+                min-height: 650px;
+            }
+
+            .hero-content h1 {
+                font-size: 34px;
+            }
+
+            .hero-content p {
+                font-size: 15px;
+            }
+
+            .property-tabs {
+                overflow-x: auto;
+            }
+
+            .property-tab {
+                padding: 12px 20px;
+                white-space: nowrap;
+            }
+
+            .search-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .search-btn {
+                height: 48px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                margin: 40px 20px;
+                padding: 35px 20px;
+            }
+
+            .cta h2 {
+                font-size: 25px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Estate<span>-Ease</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="INDEX1.HTML">Home</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#cta">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="post.html" class="post-btn">Post Property</a>
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Find Your <span>Dream Property</span>
+        </h1>
+
+        <p>
+            Buy, Rent or Find Commercial Properties
+            with Estate-Ease
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <div class="property-tabs">
+
+                <button
+                    class="property-tab active"
+                    onclick="changeTab(this, 'Buy')">
+                    Buy
+                </button>
+
+                <button
+                    class="property-tab"
+                    onclick="changeTab(this, 'Rent')">
+                    Rent
+                </button>
+
+                <button
+                    class="property-tab"
+                    onclick="changeTab(this, 'Commercial')">
+                    Commercial
+                </button>
+
+            </div>
+
+
+            <div class="search-fields">
+
+                <!-- Location -->
+
+                <div class="field">
+
+                    <label>LOCATION</label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Enter city or locality">
+
+                </div>
+
+
+                <!-- Category -->
+
+                <div class="field">
+
+                    <label>PROPERTY TYPE</label>
+
+                    <select id="propertyType">
+
+                        <option>All Types</option>
+                        <option>Apartment</option>
+                        <option>Villa</option>
+                        <option>Independent House</option>
+                        <option>Plot</option>
+                        <option>Office</option>
+                        <option>Shop</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Bedrooms -->
+
+                <div class="field">
+
+                    <label>BEDROOMS</label>
+
+                    <select>
+
+                        <option>Any</option>
+                        <option>1 BHK</option>
+                        <option>2 BHK</option>
+                        <option>3 BHK</option>
+                        <option>4 BHK</option>
+                        <option>5+ BHK</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Budget -->
+
+                <div class="field">
+
+                    <label>BUDGET</label>
+
+                    <select>
+
+                        <option>Any Budget</option>
+                        <option>Under ₹25 Lakh</option>
+                        <option>₹25 - ₹50 Lakh</option>
+                        <option>₹50 Lakh - ₹1 Cr</option>
+                        <option>₹1 Cr - ₹2 Cr</option>
+                        <option>Above ₹2 Cr</option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="search-btn"
+                    onclick="searchProperty()">
+
+                    🔍 Search
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="categories" id="categories">
+
+    <div class="section-title">
+
+        <h2>Search By Category</h2>
+
+        <p>
+            Explore properties that match your needs
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <div class="category-card"
+             onclick="selectCategory('Apartment')">
+
+            <div class="category-icon">🏢</div>
+
+            <h3>Apartments</h3>
+
+            <p>Modern apartments</p>
+
+        </div>
+
+
+        <div class="category-card"
+             onclick="selectCategory('Villa')">
+
+            <div class="category-icon">🏡</div>
+
+            <h3>Villas</h3>
+
+            <p>Luxury villas</p>
+
+        </div>
+
+
+        <div class="category-card"
+             onclick="selectCategory('House')">
+
+            <div class="category-icon">🏠</div>
+
+            <h3>Independent Houses</h3>
+
+            <p>Comfortable homes</p>
+
+        </div>
+
+
+        <div class="category-card"
+             onclick="selectCategory('Plot')">
+
+            <div class="category-icon">🌳</div>
+
+            <h3>Plots</h3>
+
+            <p>Residential plots</p>
+
+        </div>
+
+
+        <div class="category-card"
+             onclick="selectCategory('Commercial')">
+
+            <div class="category-icon">🏬</div>
+
+            <h3>Commercial</h3>
+
+            <p>Office & shops</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURED PROPERTIES ================= -->
+
+<section class="featured" id="properties">
+
+    <div class="featured-container">
+
+        <div class="section-title">
+
+            <h2>Featured Properties</h2>
+
+            <p>
+                Handpicked properties for you
+            </p>
+
+        </div>
+
+
+        <div class="property-grid">
+
+
+            <!-- PROPERTY 1 -->
+                          <div class="property-card"
+     onclick="openProperty(
+        'Premium 2 BHK Home',
+        'HSR Layout, Bangalore',
+        '2',
+        '2',
+        '1,200',
+        '₹35,000/mo',
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+     )">
+
+    <div class="property-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80"
+            alt="Premium 2 BHK Home">
+
+        <span class="property-tag">
+            FOR RENT
+        </span>
+
+        <div class="heart"
+             onclick="event.stopPropagation(); favorite(this)">
+            ♡
+        </div>
+
+    </div>
+
+    <div class="property-info">
+
+        <h3>Premium 2 BHK Home</h3>
+
+        <div class="location">
+            📍 HSR Layout, Bangalore
+        </div>
+
+        <div class="property-details">
+
+            <span>🛏 2 Beds</span>
+            <span>🚿 2 Baths</span>
+            <span>📐 1,200 sqft</span>
+
+        </div>
+
+        <div class="property-bottom">
+
+            <div class="price">
+                ₹35,000/mo
+            </div>
+
+            <button
+                class="view-btn"
+                onclick="event.stopPropagation(); openProperty(
+                    'Premium 2 BHK Home',
+                    'HSR Layout, Bangalore',
+                    '2',
+                    '2',
+                    '1,200',
+                    '₹35,000/mo',
+                    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+                )">
+                View Details →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+            <div class="property-card">
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80">
+
+                    <span class="property-tag">
+                        FOR RENT
+                    </span>
+
+                    <div class="heart"
+                         onclick="favorite(this)">
+                        ♡
+                    </div>
+
+                </div>
+
+
+                <div class="property-info">
+
+                    <h3>Premium 2 BHK Home</h3>
+
+                    <div class="location">
+                        📍 HSR Layout, Bangalore
+                    </div>
+
+                    <div class="property-details">
+
+                        <span>🛏 2 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,200 sqft</span>
+
+                    </div>
+
+
+                    <div class="property-bottom">
+
+                        <div class="price">
+                            ₹35,000/mo
+                        </div>
+
+                        <a href="#" class="view-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+<!-- PROPERTY 1 -->
+            <div class="property-card">
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80">
+
+                    <span class="property-tag">
+                        FOR SALE
+                    </span>
+
+                    <div class="heart"
+                         onclick="favorite(this)">
+                        ♡
+                    </div>
+
+                </div>
+                
+
+
+                <div class="property-info">
+
+                    <h3>Luxury 3 BHK Apartment</h3>
+
+                    <div class="location">
+                        📍 Whitefield, Bangalore
+                    </div>
+
+                    <div class="property-details">
+
+                        <span>🛏 3 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,650 sqft</span>
+
+                    </div>
+
+
+                    <div class="property-bottom">
+
+                        <div class="price">
+                            ₹1.25 Cr
+                        </div>
+
+                        <a href="property.html" class="view-btn">
+                            View Details →
+                        </a>
+                        
+
+                    </div>
+
+                </div>
+
+            </div>
+                                      <div class="property-card"
+     onclick="openProperty(
+        'Premium 2 BHK Home',
+        'HSR Layout, Bangalore',
+        '2',
+        '2',
+        '1,200',
+        '₹35,000/mo',
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+     )">
+
+    <div class="property-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80"
+            alt="Premium 2 BHK Home">
+
+        <span class="property-tag">
+            FOR RENT
+        </span>
+
+        <div class="heart"
+             onclick="event.stopPropagation(); favorite(this)">
+            ♡
+        </div>
+
+    </div>
+
+    <div class="property-info">
+
+        <h3>Premium 2 BHK Home</h3>
+
+        <div class="location">
+            📍 HSR Layout, Bangalore
+        </div>
+
+        <div class="property-details">
+
+            <span>🛏 2 Beds</span>
+            <span>🚿 2 Baths</span>
+            <span>📐 1,200 sqft</span>
+
+        </div>
+
+        <div class="property-bottom">
+
+            <div class="price">
+                ₹35,000/mo
+            </div>
+
+            <button
+                class="view-btn"
+                onclick="event.stopPropagation(); openProperty(
+                    'Premium 2 BHK Home',
+                    'HSR Layout, Bangalore',
+                    '2',
+                    '2',
+                    '1,200',
+                    '₹35,000/mo',
+                    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+                )">
+                View Details →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+            <div class="property-card">
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80">
+
+                    <span class="property-tag">
+                        FOR RENT
+                    </span>
+
+                    <div class="heart"
+                         onclick="favorite(this)">
+                        ♡
+                    </div>
+
+                </div>
+
+
+                <div class="property-info">
+
+                    <h3>Premium 2 BHK Home</h3>
+
+                    <div class="location">
+                        📍 HSR Layout, Bangalore
+                    </div>
+
+                    <div class="property-details">
+
+                        <span>🛏 2 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,200 sqft</span>
+
+                    </div>
+
+
+                    <div class="property-bottom">
+
+                        <div class="price">
+                            ₹35,000/mo
+                        </div>
+
+                        <a href="#" class="view-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+      
+
+
+            <!-- PROPERTY 2 -->
+             <div class="property-card"
+     onclick="openProperty(
+        'Premium 2 BHK Home',
+        'HSR Layout, Bangalore',
+        '2',
+        '2',
+        '1,200',
+        '₹35,000/mo',
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+     )">
+
+    <div class="property-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80"
+            alt="Premium 2 BHK Home">
+
+        <span class="property-tag">
+            FOR RENT
+        </span>
+
+        <div class="heart"
+             onclick="event.stopPropagation(); favorite(this)">
+            ♡
+        </div>
+
+    </div>
+
+    <div class="property-info">
+
+        <h3>Premium 2 BHK Home</h3>
+
+        <div class="location">
+            📍 HSR Layout, Bangalore
+        </div>
+
+        <div class="property-details">
+
+            <span>🛏 2 Beds</span>
+            <span>🚿 2 Baths</span>
+            <span>📐 1,200 sqft</span>
+
+        </div>
+
+        <div class="property-bottom">
+
+            <div class="price">
+                ₹35,000/mo
+            </div>
+
+            <button
+                class="view-btn"
+                onclick="event.stopPropagation(); openProperty(
+                    'Premium 2 BHK Home',
+                    'HSR Layout, Bangalore',
+                    '2',
+                    '2',
+                    '1,200',
+                    '₹35,000/mo',
+                    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+                )">
+                View Details →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+            <div class="property-card">
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80">
+
+                    <span class="property-tag">
+                        FOR RENT
+                    </span>
+
+                    <div class="heart"
+                         onclick="favorite(this)">
+                        ♡
+                    </div>
+
+                </div>
+
+
+                <div class="property-info">
+
+                    <h3>Premium 2 BHK Home</h3>
+
+                    <div class="location">
+                        📍 HSR Layout, Bangalore
+                    </div>
+
+                    <div class="property-details">
+
+                        <span>🛏 2 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,200 sqft</span>
+
+                    </div>
+
+
+                    <div class="property-bottom">
+
+                        <div class="price">
+                            ₹35,000/mo
+                        </div>
+
+                        <a href="#property-info-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROPERTY 3 -->
+
+            <div class="property-card">
+
+    <div class="property-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80"
+            alt="Premium 2 BHK Home"
+            onclick="openProperty(
+                'Premium 2 BHK Home',
+                'HSR Layout, Bangalore',
+                '2',
+                '2',
+                '1,200',
+                '₹35,000/mo',
+                'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+            )">
+
+        <span class="property-tag">
+            FOR RENT
+        </span>
+
+        <div class="heart"
+             onclick="event.stopPropagation(); favorite(this)">
+            ♡
+        </div>
+
+    </div>
+
+    <div class="property-info">
+
+        <h3>Premium 2 BHK Home</h3>
+
+        <div class="location">
+            📍 HSR Layout, Bangalore
+        </div>
+
+        <div class="property-details">
+            <span>🛏 2 Beds</span>
+            <span>🚿 2 Baths</span>
+            <span>📐 1,200 sqft</span>
+        </div>
+
+        <div class="property-bottom">
+
+            <div class="price">
+                ₹35,000/mo
+            </div>
+
+            <a href="#" class="view-btn"
+               onclick="event.preventDefault(); openProperty(
+                    'Premium 2 BHK Home',
+                    'HSR Layout, Bangalore',
+                    '2',
+                    '2',
+                    '1,200',
+                    '₹35,000/mo',
+                    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80'
+               )">
+                View Details →
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+            <div class="property-card">
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80">
+
+                    <span class="property-tag">
+                        COMMERCIAL
+                    </span>
+
+                    <div class="heart"
+                         onclick="favorite(this)">
+                        ♡
+                    </div>
+
+                </div>
+
+
+                <div class="property-info">
+
+                    <h3>Premium Office Space</h3>
+
+                    <div class="location">
+                        📍 Koramangala, Bangalore
+                    </div>
+
+                    <div class="property-details">
+
+                        <span>🏢 Office</span>
+                        <span>🚗 Parking</span>
+                        <span>📐 2,500 sqft</span>
+
+                    </div>
+
+
+                    <div class="property-bottom">
+
+                        <div class="price">
+                            ₹1.5 Lakh/mo
+                        </div>
+
+                        <a href="#" class="view-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta" id="cta">
+
+    <h2>Have a Property to Sell or Rent?</h2>
+
+    <p>
+        List your property on Estate-Ease and reach
+        thousands of potential buyers and tenants.
+    </p>
+
+    <a href="post.html" class="cta-btn">
+        Post Your Property
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-column">
+
+            <div class="footer-logo">
+                Estate<span>-Ease</span>
+            </div>
+
+            <p>
+                Your trusted platform for buying,
+                renting and discovering properties
+                across India.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Properties</h3>
+
+            <ul>
+                <li><a href="#">Buy Property</a></li>
+                <li><a href="#">Rent Property</a></li>
+                <li><a href="#">Commercial</a></li>
+                <li><a href="#">Plots</a></li>
+            </ul>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Company</h3>
+
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Support</h3>
+
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Safety</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Estate-Ease. All Rights Reserved.
+
+    </div>
+
+</footer>
+ 
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    let selectedMode = "Buy";
+
+
+    function changeTab(button, mode) {
+
+        selectedMode = mode;
+
+        document
+            .querySelectorAll(".property-tab")
+            .forEach(tab => {
+                tab.classList.remove("active");
+            });
+
+        button.classList.add("active");
+
+        console.log("Selected:", mode);
+    }
+
+
+    function searchProperty() {
+
+        const location =
+            document.getElementById("location").value;
+
+        const propertyType =
+            document.getElementById("propertyType").value;
+
+        if (location === "") {
+
+            alert("Please enter a location.");
+
+            return;
+        }
+
+        alert(
+            "Searching for " +
+            selectedMode +
+            " properties in " +
+            location +
+            " - " +
+            propertyType
+        );
+
+    }
+
+
+    function selectCategory(category) {
+
+        document.getElementById("propertyType").value =
+            category === "House"
+            ? "Independent House"
+            : category;
+
+        window.scrollTo({
+            top: 300,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function favorite(element) {
+
+        if (element.innerHTML === "♡") {
+
+            element.innerHTML = "♥";
+            element.style.color = "red";
+
+        } else {
+
+            element.innerHTML = "♡";
+            element.style.color = "black";
+
+        }
+
+    }
+
+function openProperty(title, location, beds, baths, area, price, image) {
+
+    const url =
+        "property.html?" +
+        "title=" + encodeURIComponent(title) +
+        "&location=" + encodeURIComponent(location) +
+        "&beds=" + encodeURIComponent(beds) +
+        "&baths=" + encodeURIComponent(baths) +
+        "&area=" + encodeURIComponent(area) +
+        "&price=" + encodeURIComponent(price) +
+        "&image=" + encodeURIComponent(image);
+
+    window.location.href = url;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f8f7;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,.1);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        .details {
+            padding: 30px;
+        }
+
+        h1 {
+            color: #146c4e;
+        }
+
+        .price {
+            color: #14734f;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .info {
+            display: flex;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .back {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #f5a623;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <img id="propertyImage" class="property-image">
+
+    <div class="details">
+        <h1 id="propertyTitle"></h1>
+
+        <p id="propertyLocation"></p>
+
+        <div class="info">
+            <span id="beds"></span>
+            <span id="baths"></span>
+            <span id="area"></span>
+        </div>
+
+        <p class="price" id="price"></p>
+
+        <p>
+            This beautiful property is available with modern facilities,
+            excellent location and premium amenities.
+        </p>
+
+        <a href="INDEX1.HTML" class="back">← Back to Properties</a>
+    </div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById("propertyTitle").textContent =
+    params.get("title") || "Property Details";
+
+document.getElementById("propertyLocation").textContent =
+    "📍 " + (params.get("location") || "Bangalore");
+
+document.getElementById("beds").textContent =
+    "🛏 " + (params.get("beds") || "3") + " Beds";
+
+document.getElementById("baths").textContent =
+    "🚿 " + (params.get("baths") || "2") + " Baths";
+
+document.getElementById("area").textContent =
+    "📐 " + (params.get("area") || "1,650") + " sqft";
+
+document.getElementById("price").textContent =
+    params.get("price") || "₹1.25 Cr";
+
+document.getElementById("propertyImage").src =
+    params.get("image") || "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d";
+
+</script>
+
+</body>
+</html>
