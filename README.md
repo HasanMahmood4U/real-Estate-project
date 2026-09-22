@@ -1,5 +1,5 @@
 🏠 Real Estate Property Platform(🚧 Currently Building)
-A modern and responsive real estate web application where users can explore, search and filter properties. 🔗 Live Demo 📂 Source Code
+A modern and responsive real estate web application where users can explore, search and filter properties. 🔗 Live Demo: https://hasanmahmood4u.github.io/real-Estate-project/ 📂 Source Code:https://github.com/HasanMahmood4U/real-Estate-project.git
 
 ✨ Features
 
